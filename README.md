@@ -9,7 +9,7 @@
 ![](https://img.shields.io/badge/scipy-%3E%3D1.6-orange)
 ![](https://img.shields.io/badge/tqdm-%3E%3D4.60-lightgrey)
 
-This is an implementation of our paper: 
+This is an implementation of our paper.
 
 Zhang K, Jiang X, Madadi M, Chen L, Savitz S, Shams S. [DBNet: A novel deep learning framework for mechanical ventilation prediction using electronic health records.](https://dl.acm.org/doi/abs/10.1145/3459930.3469551) In Proceedings of the 12th ACM Conference on Bioinformatics, Computational Biology, and Health Informatics 2021 Aug 1
 
