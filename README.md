@@ -36,7 +36,8 @@ MGPMS can be used in numerous time series prediction applications when missing v
 ## Input Dataset Format
 The input data format is a list (or tuple) of matrices (in the form of tensors) for each patient, and his/her label. All patients data form a larger a list (or tuple). Each tensor represents a structured EHR modality, row: records; column: features. Since we do not require time axis alignment accross different modalities, a patient's list of matrices often have different number of rows for each modality.
 
-![Input data format](https://user-images.githubusercontent.com/29695346/194341335-2c161948-435e-4dd5-8f91-3cb15a66f407.PNG)
+![Input data Format](https://user-images.githubusercontent.com/29695346/194346856-e4d30335-a157-46b5-a021-32e9d1cf5d7e.PNG)
+
 
 Note:  
 - Each table has same # of columns (i.e. features in the table) among all patients, but may have different # of rows (i.e. observational records) among all patients, because different patients have different number of observations due to having different # of hospital visits.
