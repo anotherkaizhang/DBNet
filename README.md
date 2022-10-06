@@ -40,11 +40,15 @@ The input data format is a list (or tuple) of matrices (in the form of tensors) 
 
 
 Note:  
-- Each table has same # of columns (i.e. features in the table) among all patients, but may have different # of rows (i.e. observational records) among all patients, because different patients have different number of observations due to having different # of hospital visits.
-- Inside each table, majority entries are zero. In a row, only the features that are observed has a nonzero value (lab test result, vital sign value, meds 0/1, treatment 0/1, etc.)
+- Each table has same # of columns (i.e. features in the table) among all patients, but may have different # of rows (i.e. observational records) among all patients.
+- Because different patients have different number of observations due to having different # of hospital visits.
+- Inside each table, majority entries are zero. 
+- In a row, only the features that are observed has a nonzero value (lab test result, vital sign value, meds 0/1, treatment 0/1, etc.)
 - Because it doesn't requires rows having regular time intervals, when another observation occurs, it simply append a row at the end.
-- We set the time unit to be 4-hours for all patients, to avoid a table having too many rows (imagine a table is created by each row represents a second). This avoids too large & sparse data (difficult for the neural network to learn)
-- In data preprocessing, if a feature is observed > 1 times within a 4-hour window for a patient, we take the average of the patient's results to create a record in his table. For meds/treatment (0/1 data), it is set to 1 as long as there is a 1 in the 4-hour window. 
+- We set the time unit to be 4-hours for all patients, to avoid a table having too many rows, i.e. each row is a 4-hour window.
+- Imagine if a table is created by each row representing a second. The huge and super sparse table is makes the attention in our pipeline difficult to learn.
+- In data preprocessing, if a feature is observed > 1 times within a 4-hour window for a patient, we take the average of the patient's results to create a record in his table. 
+- For meds/treatment (0/1 data), it is set to 1 as long as there is a 1 in the 4-hour window. 
 - The label is an integer to denote ventilated or not (in our task)
 
 ### Running
