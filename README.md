@@ -13,7 +13,8 @@ This is an implementation of our paper: [Zhang K, Jiang X, Madadi M, Chen L, Sav
 
 DBNet implements a deep learning encoder-decoder, multimodal learning pipeline to perform classification task (and easily be tailored to do regression task) when the input time series data has missing values. 
 
-![Figure](https://user-images.githubusercontent.com/29695346/182427448-14ca01e7-2a75-4a76-8d47-118e472654da.jpg)
+![Figure](https://user-images.githubusercontent.com/29695346/194333875-9189daa2-fea9-49d6-86bd-67115c1f3640.PNG)
+
 
 The idea is to use Multivariant Gaussian Process for missing value imputation. The key note is that the Gaussian Process parameters (mean and covariance matrix) are integrated as parameters of the prediction neural network, therefore, missing data imputation and classification are performed together and jointly trained via back-propagation, which siginificantly boost prediction performance.
 
