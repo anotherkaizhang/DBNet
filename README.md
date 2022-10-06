@@ -34,31 +34,21 @@ MGPMS can be used in numerous time series prediction applications when missing v
 
 
 ## Input Dataset Format
-The input data format is a list of matrices (in the form of tensors) for each patient. Each tensor represents a structured EHR modality, row: records; column: features. Since we do not require time axis alignment accross different modalities, a patient's list of matrices often have different number of rows for each modality.
+The input data format is a list (or tuple) of matrices (in the form of tensors) for each patient, and his/her label. All patients data form a larger a list (or tuple). Each tensor represents a structured EHR modality, row: records; column: features. Since we do not require time axis alignment accross different modalities, a patient's list of matrices often have different number of rows for each modality.
 
 ![Input data format](https://user-images.githubusercontent.com/29695346/194341335-2c161948-435e-4dd5-8f91-3cb15a66f407.PNG)
 
-We using observed position indicators to represent the sparse matrix, in the following format. Suppose a patient has a matrix of (row: time stamps, col: featurs) with many missingness. We create the following variables:
-
-- 'labels': integer (binaries) 0/1 (dtype = int8),
-- 'times': list, real observational time points (dtype = float64),
-- 'values': list, observational observational values at the 'times' stamps (dtype = float64),
-- 'ind_lvs': list of observational value indices in the column (dtype = int64),
-- 'ind_times': list of observational time indices (dtype = int64),
-- 'num_obs_values': integer (dtype = int32),
-- 'rnn_grid_times': list, inferred time points (at which the values need to be imputed) (dtype = float64),
-- 'num_rnn_grid_times': how many inferred time points, i.e. length of 'rnn_grid_times' (dtype = int32),
-
-Optional: 
-- 'meds_on_grid': list of drug prescription history time indices (dtype = float64),
-- 'covs': list of covariates (length-n_covs vector), n_covs: number of demographic dimensions (dtype = float64), 
-
-The folder 'data' contains one small dataset for demonstration purposes.
+Note:  
+- Each table has same # of columns (i.e. features in the table) among all patients, but may have different # of rows (i.e. observational records) among all patients, because different patients have different number of observations due to having different # of hospital visits.
+- Inside each table, majority entries are zero. In a row, only the features that are observed has a nonzero value (lab test result, vital sign value, meds 0/1, treatment 0/1, etc.)
+- Because it doesn't requires rows having regular time intervals, when another observation occurs, it simply append a row at the end.
+- We set the time unit to be 4-hours for all patients, to avoid a table having too many rows (imagine a table is created by each row represents a second). This avoids too large & sparse data (difficult for the neural network to learn)
+- In data preprocessing, if a feature is observed > 1 times within a 4-hour window for a patient, we take the average of the patient's results to create a record in his table. For meds/treatment (0/1 data), it is set to 1 as long as there is a 1 in the 4-hour window. 
+- The label is an integer to denote ventilated or not (in our task)
 
 ### Running
 
-- Run `simulation.py' to generate data, or simply use the data in the 'data' folder
-- Run 'MGP-MS.py', you can custermize hypter parameters and your own dataset(s).
+- Use the '
 
 ### Contact
 kai.zhang.1[at]uth.tmc.edu
