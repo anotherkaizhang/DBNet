@@ -15,12 +15,11 @@ DBNet implements a deep learning encoder-decoder, multimodal learning pipeline t
 
 ![Figure](https://user-images.githubusercontent.com/29695346/194333875-9189daa2-fea9-49d6-86bd-67115c1f3640.PNG)
 
+The idea is to use encoder network to map different modality EHR data to an embedding in a latent space, fusion the embeddings, then the decoder network is for learning the relationships between different modalities. The encoder network consists of multiple channels, each has its own structure to process a single modality data.
 
-The idea is to use Multivariant Gaussian Process for missing value imputation. The key note is that the Gaussian Process parameters (mean and covariance matrix) are integrated as parameters of the prediction neural network, therefore, missing data imputation and classification are performed together and jointly trained via back-propagation, which siginificantly boost prediction performance.
+We applied it on a disease prediction task using temporal EHR data and achieved state-of-the-art performance on the same task compared to various deep learning and conventional machine learning models. Here the different modalities are different tables in the EHR structured data (lab tests, vitals, prescriptions, treatments, etc.) Other modalities (MRI images, audio signals, clinical notes, etc.) can also be added to the newtork by adding different channels.
 
-We applied it on a disease prediction task and achieved state-of-the-art performance on the same task compared to various deep learning and conventional machine learning models. [A multi-task Gaussian process self-attention neural network for real-time prediction of the need for mechanical ventilators in COVID-19 patients](https://pubmed.ncbi.nlm.nih.gov/35489596/).
-
-In this paper, MGPMS was applied not only to classify (0/1) a future event happens or not, but also generate patient's entire risk score trajectory from the prediction time to the time event happens. We show the risk trajectory has siginificant robustness and consistency compared to traditional Machine Learning Models (Logistic Regression, Cox Regression, etc.) in that it uses target replication to further boost performance.
+Another keynote is that, DBNet does * * not * * need time axis alignment accross different modalities data of a patient, thanks to its specific design to handle irregular sampling data. For each modality data, it also does * * not * * require regular time intervals between two record (i.e. the time interval between any two rows in the input data table can be arbitrary). DBNet uses attention to learn to pay attention to different observed records. 
 
 MGPMS can be used in numerous time series prediction applications when missing values exists, besides the COVID-19 patients Risk Score prediction in this paper.
 
@@ -35,9 +34,9 @@ MGPMS can be used in numerous time series prediction applications when missing v
 
 
 ## Input Dataset Format
-The input data format is not a usual regular matrix format, as takes input data with missing values, such format usually takes too much space especially when we have a lot of missing observations (as in our data).
+The input data format is a list of matrices (in the form of tensors) for each patient. Each tensor represents a structured EHR modality, row: records; column: features. Since we do not require time axis alignment accross different modalities, a patient's list of matrices often have different number of rows for each modality.
 
-![image](https://user-images.githubusercontent.com/29695346/182448267-210fd57a-a658-4bbc-9d3c-e49ade5f5a02.png)
+![Input data format](https://user-images.githubusercontent.com/29695346/194341335-2c161948-435e-4dd5-8f91-3cb15a66f407.PNG)
 
 We using observed position indicators to represent the sparse matrix, in the following format. Suppose a patient has a matrix of (row: time stamps, col: featurs) with many missingness. We create the following variables:
 
