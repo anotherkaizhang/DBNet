@@ -39,10 +39,9 @@ MGPMS can be used in numerous time series prediction applications when missing v
 
 
 ## Input Dataset Format
-The input data format is a list (or tuple) of matrices (in the form of pyTorch tensors) for each patient, and his/her label. All patients data form a larger a list (or tuple). Each tensor represents a structured EHR modality, row: records; column: features. Since we do not require time axis alignment accross different modalities, a patient's list of matrices often have different number of rows for each modality.
+The input data format is a list(or tuple) of matrices (in the form of pyTorch tensors) for each patient, and his/her label. All patients data form a larger a list (or tuple). Each tensor represents a structured EHR modality, row: records; column: features. Since we do not require time axis alignment accross different modalities, a patient's list of matrices often have different number of rows for each modality.
 
 ![Input data Format](https://user-images.githubusercontent.com/29695346/194346856-e4d30335-a157-46b5-a021-32e9d1cf5d7e.PNG)
-
 
 Note:  
 - Each table has same # of columns (i.e. features in the table) among all patients, but may have different # of rows (i.e. observational records) among all patients.
@@ -60,6 +59,6 @@ Note:
 
 - Use the 'DBNet.ipynb', our input data was in .pickle format. It's of the exact format of the above figure (list of lists, or tuple or tuples, both are valid). Each table is actually a PyTorch 2D tensor, with torch.float32 format. The label is a torch.long integer. 
 
-We are preparing a simulated data to help better understand the code. In the meanwhile, please contact if you have any questions:
+If have any questions about the code or paper, please give me comments:
 
 kai.zhang.1@uth.tmc.edu (https://sbmi.uth.edu/faculty-and-staff/kai-zhang.htm)
