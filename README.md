@@ -9,7 +9,7 @@
 ![](https://img.shields.io/badge/scipy-%3E%3D1.6-orange)
 ![](https://img.shields.io/badge/tqdm-%3E%3D4.60-lightgrey)
 
-This is an implementation of our paper: [Zhang K, Jiang X, Madadi M, Chen L, Savitz S, Shams S. DBNet: A novel deep learning framework for mechanical ventilation prediction using electronic health records. InProceedings of the 12th ACM Conference on Bioinformatics, Computational Biology, and Health Informatics 2021 Aug 1 (pp. 1-8). ](https://dl.acm.org/doi/abs/10.1145/3459930.3469551)
+This is an implementation of our paper: [Zhang K, Jiang X, Madadi M, Chen L, Savitz S, Shams S. DBNet: A novel deep learning framework for mechanical ventilation prediction using electronic health records. InProceedings of the 12th ACM Conference on Bioinformatics, Computational Biology, and Health Informatics 2021 Aug 1](https://dl.acm.org/doi/abs/10.1145/3459930.3469551)
 
 DBNet implements a deep learning encoder-decoder, multimodal learning pipeline to perform classification task (and easily be tailored to do regression task) when the input time series data has missing values. 
 
