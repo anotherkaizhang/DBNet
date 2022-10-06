@@ -53,7 +53,7 @@ Note:
 
 ### Running
 
-- Use the 'DBNet.ipynb', our input data was in .pickle format. It's of the exact format of the above figure (list of lists, or tuple or tuples, both work). Each table is actually a PyTorch 2D tensor, with torch.float32 format. The label is a torch.long integer.
+- Use the 'DBNet.ipynb', our input data was in .pickle format. It's of the exact format of the above figure (list of lists, or tuple or tuples, both are valid). Each table is actually a PyTorch 2D tensor, with torch.float32 format. The label is a torch.long integer.
 
 We are preparing a simulated data to help better understand the code, please stay tuned.
 
