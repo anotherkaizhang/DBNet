@@ -59,4 +59,4 @@ We are preparing a simulated data to help better understand the code, please sta
 
 In the meanwhile, please contact if you have any questions:
 
-kai.zhang.1[at]uth.tmc.edu
+kai.zhang.1@uth.tmc.edu
