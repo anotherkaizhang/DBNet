@@ -48,17 +48,15 @@ Note:
 - In a row, only the features that are observed has a nonzero value (lab test result, vital sign value, meds 0/1, treatment 0/1, etc.)
 - Because it doesn't requires rows having regular time intervals, when another observation occurs, it simply append a row at the end.
 - We set the time unit to be 4-hours for all patients, to avoid a table having too many rows, i.e. each row is a 4-hour window.
-- Imagine if a table is created by each row representing a second. The huge and super sparse table is makes the attention in our pipeline difficult to learn.
+- The time unit depends on your application. In our EHR data, if a table is created by each row representing a second, the huge and super sparse table makes the attention in our model very difficult to learn.
 - In data preprocessing, if a feature is observed > 1 times within a 4-hour window for a patient, we take the average of the patient's results to create a record in his table. 
 - For meds/treatment (0/1 data), it is set to 1 as long as there is a 1 in the 4-hour window. 
 - The label is an integer to denote ventilated or not (in our task)
 
 ### Running
 
-- Use the 'DBNet.ipynb', our input data was in .pickle format. It's of the exact format of the above figure (list of lists, or tuple or tuples, both are valid). Each table is actually a PyTorch 2D tensor, with torch.float32 format. The label is a torch.long integer.
+- Use the 'DBNet.ipynb', our input data was in .pickle format. It's of the exact format of the above figure (list of lists, or tuple or tuples, both are valid). Each table is actually a PyTorch 2D tensor, with torch.float32 format. The label is a torch.long integer. 
 
-We are preparing a simulated data to help better understand the code, please stay tuned.
-
-In the meanwhile, please contact if you have any questions:
+We are preparing a simulated data to help better understand the code. In the meanwhile, please contact if you have any questions:
 
 kai.zhang.1@uth.tmc.edu (https://sbmi.uth.edu/faculty-and-staff/kai-zhang.htm)
