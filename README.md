@@ -21,7 +21,7 @@ The idea is to use encoder network to map different modality EHR data to an embe
 
 We applied it on a disease prediction task using temporal EHR data and achieved state-of-the-art performance on the same task compared to various deep learning and conventional machine learning models. Here the different modalities are different tables in the EHR structured data (lab tests, vitals, prescriptions, treatments, etc.) Other modalities (MRI images, audio signals, clinical notes, etc.) can also be added to the newtork by adding different channels.
 
-Another keynote is that, DBNet does * * not * * need time axis alignment accross different modalities data of a patient, thanks to its specific design to handle irregular sampling data. For each modality data, it also does * * not * * require regular time intervals between two record (i.e. the time interval between any two rows in the input data table can be arbitrary). DBNet uses attention to learn to pay attention to different observed records. 
+Another keynote is that, DBNet does * *not* * need time axis alignment accross different modalities data of a patient, thanks to its specific design to handle irregular sampling data. For each modality data, it also does * *not* * require regular time intervals between two record (i.e. the time interval between any two rows in the input data table can be arbitrary). DBNet uses attention to learn to pay attention to different observed records. 
 
 MGPMS can be used in numerous time series prediction applications when missing values exists, besides the COVID-19 patients Risk Score prediction in this paper.
 
